@@ -1,12 +1,20 @@
-import React from 'react'
-import { Text } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { Host, Picker } from '@expo/ui/swift-ui';
+import React from 'react';
 
 const IndexPage = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   return (
-   <SafeAreaView className="flex-1 items-center justify-center bg-white dark:bg-black">
-     <Text className="text-red-500 dark:text-white">Hello, Hexaa!</Text>
-   </SafeAreaView>
+   <Host style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+     <Picker
+    options={['$', '$$', '$$$', '$$$$']}
+    selectedIndex={selectedIndex}
+    onOptionSelected={({ nativeEvent: { index } }) => {
+      setSelectedIndex(index);
+      console.log(`Selected index: ${index}`);
+    }}
+    variant="segmented"
+  />
+   </Host>
   )
 }
 
